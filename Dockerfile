@@ -1,3 +1,4 @@
+COPY static/config.toml.sample ./static/config.toml.sample
 
 # Build stage
 FROM golang:alpine AS builder
