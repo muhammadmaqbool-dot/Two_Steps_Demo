@@ -21,7 +21,7 @@ services:
     name: listmonk
     env: docker
     dockerfilePath: ./Dockerfile
-    plan: starter
+    plan: free
     envVars:
       - key: LISTMONK_db__user
         value: twosteps_db_user
