@@ -1,0 +1,19 @@
+[app]
+# Interface and port where the app will run its webserver.  The default value
+# of localhost will only listen to connections from the current machine. To
+# listen on all interfaces use '0.0.0.0'. To listen on the default web address
+# port, use port 80 (this will require running with elevated permissions).
+address = "localhost:9000"
+
+# Database.
+[db]
+host = "dpg-d3n5bkj3fgac73abqdog-a"
+port = 5432
+user = "twosteps_db_user"
+password = "kDCh4C4LsI2Y438GPc71S5bO7Sr3rdda"
+database = "twosteps_db"
+ssl_mode = "disable"
+max_open = 25
+max_idle = 25
+max_lifetime = "300s"
+params = ""
