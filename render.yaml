@@ -23,28 +23,18 @@ services:
     dockerfilePath: ./Dockerfile
     plan: starter
     envVars:
-      # Database Settings
       - key: LISTMONK_db__user
-        fromService:
-          type: pserv
-          name: listmonk-db
-          envVarKey: POSTGRES_USER
+        value: twosteps_db_user
       - key: LISTMONK_db__password
-        fromService:
-          type: pserv
-          name: listmonk-db
-          envVarKey: POSTGRES_PASSWORD
+        value: kDCh4C4LsI2Y438GPc71S5bO7Sr3rdda
       - key: LISTMONK_db__database
-        value: listmonk
+        value: twosteps_db
       - key: LISTMONK_db__host
-        fromService:
-          type: pserv
-          name: listmonk-db
-          property: hostConnectionString
+        value: dpg-d3n5bkj3fgac73abqdog-a
       - key: LISTMONK_db__port
         value: 5432
       - key: LISTMONK_db__ssl_mode
-        value: require
+        value: disable
 
       # App Settings
       - key: LISTMONK_app__address
