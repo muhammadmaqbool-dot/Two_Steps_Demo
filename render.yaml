@@ -1,0 +1,65 @@
+services:
+  # PostgreSQL Database
+  - type: pserv
+    name: listmonk-db
+    env: docker
+    plan: starter
+    disk:
+      name: data
+      mountPath: /var/lib/postgresql/data
+      sizeGB: 10
+    envVars:
+      - key: POSTGRES_DB
+        value: listmonk
+      - key: POSTGRES_USER
+        generateValue: true
+      - key: POSTGRES_PASSWORD
+        generateValue: true
+
+  # Listmonk Web Service
+  - type: web
+    name: listmonk
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    dependencies:
+      - listmonk-db
+    envVars:
+      # Database Settings
+      - key: LISTMONK_db__user
+        fromService:
+          type: pserv
+          name: listmonk-db
+          envVarKey: POSTGRES_USER
+      - key: LISTMONK_db__password
+        fromService:
+          type: pserv
+          name: listmonk-db
+          envVarKey: POSTGRES_PASSWORD
+      - key: LISTMONK_db__database
+        value: listmonk
+      - key: LISTMONK_db__host
+        fromService:
+          type: pserv
+          name: listmonk-db
+          property: hostConnectionString
+      - key: LISTMONK_db__port
+        value: 5432
+      - key: LISTMONK_db__ssl_mode
+        value: require
+
+      # App Settings
+      - key: LISTMONK_app__address
+        value: 0.0.0.0:9000
+      - key: LISTMONK_app__admin_username
+        sync: false
+      - key: LISTMONK_app__admin_password
+        sync: false
+      - key: LISTMONK_app__cookie_secret
+        generateValue: true
+      - key: LISTMONK_app__base_url
+        value: https://listmonk.onrender.com
+
+      # Render port mapping
+      - key: PORT
+        value: 9000
