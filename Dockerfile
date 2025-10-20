@@ -10,8 +10,10 @@ FROM alpine:latest
 WORKDIR /listmonk
 RUN apk --no-cache add ca-certificates tzdata shadow su-exec
 COPY --from=builder /app/listmonk .
-COPY config.toml.sample config.toml
+COPY config.toml.sample .
+COPY config.toml .
 COPY static ./static
+COPY i18n ./i18n
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 EXPOSE 9000
