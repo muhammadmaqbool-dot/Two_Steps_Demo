@@ -31,7 +31,7 @@ services:
         value: twosteps_db
       - key: LISTMONK_db__host
         value: dpg-d3n5bkj3fgac73abqdog-a
-      - key: LISTMONK_db.port
+      - key: LISTMONK_db__port
         value: 5432
       - key: LISTMONK_db__ssl_mode
         value: disable
