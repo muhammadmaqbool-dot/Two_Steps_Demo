@@ -22,8 +22,6 @@ services:
     env: docker
     dockerfilePath: ./Dockerfile
     plan: starter
-    dependencies:
-      - twosteps-db
     envVars:
       # Database Settings
       - key: LISTMONK_db__user
